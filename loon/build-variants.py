@@ -30,6 +30,7 @@ find1 = lambda sub: [l for l in lines if sub in l][0]
 ITEM6 = span("Tailscale 回家：[Proxy]", "上游原行不动")
 ITEM8 = span("WARP 代理链：新增", "全流量不从家里出")
 ITEM19 = span("19. 新增「落地」层", "本机化参数（2026-11-21")
+ITEM20_BODY = span("20. 落地手动策略加入", "本机化参数（2026-11-21").split("\n")[:-2]
 LOCAL_LINE = find1("本机化参数（2026-11-21")
 LOCALP = span("本机化参数（2026-11-21", "会下发 Fake-IP")
 ITEM1LINE = find1("连上家里 Wi-Fi 时同样塌缩为 DIRECT")
@@ -69,6 +70,7 @@ P2 + "19. （Beta 版）「落地」层——本正常版无代理链：落地�
 P5 + "组不存在；落地手动策略 = 兜底后备策略（前置降级，默认）+ 落地出口策略",
 P5 + "（手动后备）；落地节点过滤器与全球节点排除规则与 Beta 版一致，节点仍",
 P5 + "只在落地出口策略里出现、不混入任何通用策略组",
+*ITEM20_BODY,
 "#",
 LOCAL_LINE,
 ]), 1, "normal 第19条")
@@ -103,6 +105,7 @@ tvos = rep(tvos, ITEM19, block([
 P2 + "19. （Beta 版）「落地」层——本 tvOS 版无代理链：电视直连 URnetwork 端点",
 P5 + "即可，落地手动策略 = 落地出口策略（默认）+ 兜底后备策略（手动后备）；",
 P5 + "落地前置策略组不存在；落地节点过滤器与全球节点排除规则与 Beta 版一致",
+*ITEM20_BODY,
 "#",
 LOCAL_LINE,
 ]), 1, "tvos 第19条")
