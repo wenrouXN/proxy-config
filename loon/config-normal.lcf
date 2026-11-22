@@ -28,8 +28,8 @@
 #     切勿给节点挂 underlying-proxy——mihomo 格式里会变成不存在的 dialer-proxy、旧 Clash
 #     格式里节点会被整条过滤（2026-11-21 踩过，已撤）；Loon 靠下面的代理链回家连它）
 #  8. （Beta 版）WARP 代理链——本正常版无此项：无 [Proxy Chain] 段与 WARP落地策略组；
-#     WARP手动策略 = 兜底后备策略（默认，在外 YouTube 走机场）+ WARP节点（手动后备）；
-#     在家场景塌缩 DIRECT，YouTube 由家里 MSM 的 WARP 接管，与 Beta 版效果一致
+#     WARP手动策略 = WARP节点（默认，与 tvOS 版一致）+ 兜底后备策略（手动后备，
+#     在外无回家通道时切它走机场）；在家场景塌缩 DIRECT，YouTube 由家里 MSM 接管
 #  9. 文件头增加本说明
 # 10. [Remote Proxy] 内嵌 Sub-Store 的 loon 集合订阅（家里 1.3:3005，target=Loon；与 MSM
 #     用的 custom 集合同源，仅 WARP 节点换成 cf-loon 的局域网地址版）：在家局域网直拉、
@@ -72,8 +72,8 @@
 #     自动策略 → 台湾家宽 → 全部家宽 → 港/台/日/新自动 → 家宽节点 → 兜底
 #     （国内苹果服务与 CDN 直连本就最顺，海外苹果服务再走美国家宽）
 #  19. （Beta 版）「落地」层——本正常版无代理链：落地代理链与落地前置策略
-#     组不存在；落地手动策略 = 兜底后备策略（前置降级，默认）+ 落地出口策略
-#     （手动后备）；落地节点过滤器与全球节点排除规则与 Beta 版一致，节点仍
+#     组不存在；落地手动策略 = 落地出口策略（默认，3.5.3 无链、只能裸节点直用）
+#     + 兜底后备策略（手动后备）；落地节点过滤器与全球节点排除规则与 Beta 版一致，节点仍
 #     只在落地出口策略里出现、不混入任何通用策略组
 # 20. 落地手动策略加入对出口节点有要求的手选组（Smith 定，2026-11-22）：
 #     家宽、AI、谷歌、MUSE、美国、苹果六个手动策略各把落地手动策略列为
@@ -183,9 +183,9 @@ AI手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 落地手
 谷歌手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 落地手动策略, 日本自动策略, 新国自动策略, 台湾自动策略, 香港自动策略, 韩国自动策略, AI手动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 苹果手动策略=select, DIRECT, 美国家宽, 美国自动策略, 台湾家宽, 全部家宽, 落地手动策略, 香港自动策略, 台湾自动策略, 日本自动策略, 新国自动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 回家手动策略=select, DIRECT, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-WARP手动策略=select, 兜底后备策略, WARP节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+WARP手动策略=select, WARP节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 落地出口策略=select, 落地节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-落地手动策略=select, 兜底后备策略, 落地出口策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+落地手动策略=select, 落地出口策略, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 香港自动策略=url-test, 香港节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
 台湾自动策略=url-test, 台湾节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
 日本自动策略=url-test, 日本节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
