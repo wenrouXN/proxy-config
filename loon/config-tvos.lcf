@@ -91,6 +91,11 @@
 # 22. [Plugin] 调整（Smith 定，2026-11-22）：移除 TestFlightRegionUnlock
 #     （原 enabled=false，本就没启用）；加入奶思（fmz200）的「广告拦截
 #     &净化合集」blockAds.plugin（约 730 款 APP/小程序，远程引用）
+# 23. [Plugin] 扩充（Smith 定，2026-11-22）：按方案加入 5 项共 7 个插件：
+#     薯条 Biliverse 哔哩万象 Enhanced + ADBlock（原 BiliUniverse 已更名
+#     Biliverse；ADBlock 的发布文件名仍是 BiliBili.ADBlock.plugin）、
+#     iRingo 地图 Maps + 天气 WeatherKit（家族 9 个模块，只装旗舰两个）、
+#     DualSubs Universal 通用双语字幕；奶思 微博去广告 + Auto_Join_TF
 #
 # Loon 进阶配置 - 此配置文件自动选择网络时延最低的代理节点，无需人工干预，所有过程完全自动化。当连接到配备透明代理的路由器时，Loon 将使用“直连”策略，此时所有流量直接通过你的路由器；在其他网络环境中，Loon 将使用自身的“自动分流”模式访问这些网站，从而避免在已使用透明代理路由器时出现双重代理。
 # Date: 2025-11-08 00:21:37
@@ -253,6 +258,13 @@ https://kelee.one/Tool/Loon/Lpx/Node_detection_tool.lpx, enabled=true
 https://kelee.one/Tool/Loon/Lpx/BoxJs.lpx, policy=兜底后备策略, enabled=true
 https://kelee.one/Tool/Loon/Lpx/Sub-Store.lpx, policy=兜底后备策略, enabled=true
 https://kelee.one/Tool/Loon/Lpx/Script-Hub.lpx, policy=兜底后备策略, enabled=true
+https://github.com/Biliverse/Enhanced/releases/latest/download/Biliverse.Enhanced.plugin, enabled=true
+https://github.com/Biliverse/ADBlock/releases/latest/download/BiliBili.ADBlock.plugin, enabled=true
+https://github.com/NSRingo/Maps/releases/latest/download/iRingo.Maps.plugin, enabled=true
+https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit.lpx, enabled=true
+https://github.com/DualSubs/Universal/releases/latest/download/DualSubs.Universal.plugin, enabled=true
+https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/weibo.plugin, enabled=true
+https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/Auto_Join_TF.plugin, enabled=true
 
 [Mitm]
 hostname=
