@@ -58,24 +58,24 @@ P5 + "[General] 的 include-tun 保留：回家网段进隧道后由 home.lsr �
 ]), 1, "normal 第6条")
 normal = rep(normal, ITEM8, block([
 P2 + "8. （Beta 版）WARP 代理链——本正常版无此项：无 [Proxy Chain] 段与 WARP落地策略组；",
-P5 + "WARP手动策略 = 兜底后备策略（默认，在外 YouTube 走机场）+ WARP节点（手动后备）；",
-P5 + "在家场景塌缩 DIRECT，YouTube 由家里 MSM 的 WARP 接管，与 Beta 版效果一致",
+P5 + "WARP手动策略 = WARP节点（默认，与 tvOS 版一致）+ 兜底后备策略（手动后备，",
+P5 + "在外无回家通道时切它走机场）；在家场景塌缩 DIRECT，YouTube 由家里 MSM 接管",
 ]), 1, "normal 第8条")
 normal = rep(normal, TS_NODE, "", 1, "normal 删除 Tailscale 节点")
 normal = rep(normal, HOME_POLICY, "回家手动策略=select, DIRECT, img-url=", 1, "normal 回家策略")
 normal = rep(normal, LANDING_POLICY, "", 1, "normal 删除 WARP落地策略")
-normal = rep(normal, WARP_POLICY, "WARP手动策略=select, 兜底后备策略, WARP节点, img-url=", 1, "normal WARP策略")
+normal = rep(normal, WARP_POLICY, "WARP手动策略=select, WARP节点, 兜底后备策略, img-url=", 1, "normal WARP策略")
 normal = rep(normal, ITEM19, block([
 P2 + "19. （Beta 版）「落地」层——本正常版无代理链：落地代理链与落地前置策略",
-P5 + "组不存在；落地手动策略 = 兜底后备策略（前置降级，默认）+ 落地出口策略",
-P5 + "（手动后备）；落地节点过滤器与全球节点排除规则与 Beta 版一致，节点仍",
+P5 + "组不存在；落地手动策略 = 落地出口策略（默认，3.5.3 无链、只能裸节点直用）",
+P5 + "+ 兜底后备策略（手动后备）；落地节点过滤器与全球节点排除规则与 Beta 版一致，节点仍",
 P5 + "只在落地出口策略里出现、不混入任何通用策略组",
 *ITEM20_BODY,
 "#",
 LOCAL_LINE,
 ]), 1, "normal 第19条")
 normal = rep(normal, FRONT_POLICY, "", 1, "normal 删除落地前置策略")
-normal = rep(normal, LANDING_MANUAL, "落地手动策略=select, 兜底后备策略, 落地出口策略, img-url=", 1, "normal 落地手动策略")
+normal = rep(normal, LANDING_MANUAL, "落地手动策略=select, 落地出口策略, 兜底后备策略, img-url=", 1, "normal 落地手动策略")
 normal = rep(normal, WARP_CHAIN_LINE, "", 1, "normal 删除 WARP 链行")
 normal = rep(normal, LANDING_CHAIN_LINE, "", 1, "normal 删除落地链行")
 normal = rep(normal, "[Proxy Chain]\n", "", 1, "normal 删除代理链段头")
