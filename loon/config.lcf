@@ -72,6 +72,14 @@
 # 18. 苹果手动策略再修正（Smith 定）：直连优先——DIRECT → 美国家宽 → 美国
 #     自动策略 → 台湾家宽 → 全部家宽 → 港/台/日/新自动 → 家宽节点 → 兜底
 #     （国内苹果服务与 CDN 直连本就最顺，海外苹果服务再走美国家宽）
+# 19. 新增「落地」层（Smith 定，2026-11-22）：URnetwork 美国住宅节点（Sub-Store
+#     独立订阅 urnetwork 合入 loon/custom 两集合，节点名格式「落地节点-城市-
+#     州-纯净XX」，入选门槛：美国出口、ip-api 双 false、真实宽带 ISP、出口
+#     稳定、IPPure risk_score ≤ 20 即纯净度 ≥80）。落地节点过滤器 + 落地出口
+#     策略（仅含这批节点）+ 落地前置策略（兜底后备策略/Tailscale）+ 落地代理
+#     链（前置 → 落地出口，出口 IP 即住宅 IP）+ 落地手动策略（默认选链）；
+#     不绑任何规则集、仅手动选用；全球节点过滤器加排除「落地节点」，保证它
+#     们不混入任何通用策略组，只能经链式落地使用
 #
 # 本机化参数（2026-11-21 已按 Smith 家里环境落地）：
 #  - 场景 SSID：HOMEair（共 24 处：23 处场景组 + 1 处 [Host]）
@@ -122,7 +130,7 @@ SubStore = http://192.168.1.3:3005/cD7wiTGitLyoBdEguAnFWmqCpHKwhLQh4opXfFhFCEpmY
 新国节点=NameRegex, FilterKey="^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|SGP|Singapore)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$"
 美国节点=NameRegex, FilterKey="^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA|United States)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$"
 游戏节点=NameRegex, FilterKey="^(?=.*((?i)游戏|🎮|(\b(GAME)(\d+)?\b)))(?!.*((?i)回国|校园)).*$"
-全球节点=NameRegex, FilterKey="^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$"
+全球节点=NameRegex, FilterKey="^(?=.*(.))(?!.*((?i)落地节点|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$"
 家宽节点=NameRegex, FilterKey="^(?=.*((?i)🏠|家宽|住宅)).*$"
 日本家宽节点=NameRegex, FilterKey="^(?=.*((?i)🇯🇵|日本|东京|大阪|(\b(JP|Japan)(\d+)?\b)))(?=.*(🏠|家宽|住宅)).*$"
 台湾家宽节点=NameRegex, FilterKey="^(?=.*((?i)🇹🇼|台湾|台北|新北|彰化|Hinet|SeedNet|(\b(TW|Taiwan)(\d+)?\b)))(?=.*(🏠|家宽|住宅)).*$"
@@ -130,6 +138,7 @@ SubStore = http://192.168.1.3:3005/cD7wiTGitLyoBdEguAnFWmqCpHKwhLQh4opXfFhFCEpmY
 WARP节点=NameRegex, FilterKey="^(?=.*((?i)WARP)).*$"
 省流节点=NameRegex, FilterKey="^(?=.*((?i)0\.[1-5]|低倍率|省流|大流量))(?!.*🏠).*$"
 美国省流节点=NameRegex, FilterKey="^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA|United States)(\d+)?\b)))(?=.*((?i)0\.[1-5]|低倍率|省流|大流量))(?!.*🏠).*$"
+落地节点=NameRegex, FilterKey="^(?=.*落地节点).*$"
 
 [Proxy Group]
 # --------------------------------
@@ -178,6 +187,9 @@ AI手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 日本自
 回家手动策略=select, Tailscale, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 WARP落地策略=select, WARP节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 WARP手动策略=select, WARP代理链, WARP节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+落地前置策略=select, 兜底后备策略, Tailscale, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+落地出口策略=select, 落地节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+落地手动策略=select, 落地代理链, 落地出口策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 香港自动策略=url-test, 香港节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
 台湾自动策略=url-test, 台湾节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
 日本自动策略=url-test, 日本节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
@@ -193,6 +205,7 @@ WARP手动策略=select, WARP代理链, WARP节点, img-url=https://raw.githubus
 
 [Proxy Chain]
 WARP代理链 = Tailscale,WARP落地策略, udp=true
+落地代理链 = 落地前置策略,落地出口策略, udp=true
 
 [Rule]
 # 当配置文件中没有任何有效策略组时，Loon将使用内置的PROXY策略组
