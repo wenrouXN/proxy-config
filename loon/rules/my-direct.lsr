@@ -5,3 +5,12 @@ DOMAIN-SUFFIX,lovcfun.top
 # 以下 2 条与 MSM 中指向「全球直连」的手写规则对应（2026-11-21 搬入）：
 DOMAIN-SUFFIX,ipv6-test.com
 DOMAIN-SUFFIX,mobaibox.com
+# 以下 8 条 2026-11-22 按 Smith 要求加入：音乐服务 4 条 + 文件/粘贴站 4 条，强制直连
+DOMAIN,music.163.com
+DOMAIN,c.y.qq.com
+DOMAIN,m.kugou.com
+DOMAIN,m.kuwo.cn
+DOMAIN,paste.c-net.org
+DOMAIN-SUFFIX,uguu.se
+DOMAIN,litterbox.catbox.moe
+DOMAIN,litter.catbox.moe
