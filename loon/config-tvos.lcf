@@ -102,6 +102,9 @@
 # 25. [Mitm] 主机名（Smith 定，2026-11-22）：加入 testflight.apple.com，
 #     供 Auto_Join_TF 捕获 TestFlight 账号令牌（插件自带的 [MitM] 段是
 #     注释掉的，需手动加）；其余主机名仍由各插件自行声明
+# 26. [Plugin] 微信外部链接解锁（Smith 定，2026-11-22）：加可莉的
+#     Weixin_external_links_unlock（hub 功能插件），拦截微信的链接
+#     确认页（weixin110/security.wechat）直接放行跳转
 #
 # Loon 进阶配置 - 此配置文件自动选择网络时延最低的代理节点，无需人工干预，所有过程完全自动化。当连接到配备透明代理的路由器时，Loon 将使用“直连”策略，此时所有流量直接通过你的路由器；在其他网络环境中，Loon 将使用自身的“自动分流”模式访问这些网站，从而避免在已使用透明代理路由器时出现双重代理。
 # Date: 2025-11-08 00:21:37
@@ -278,6 +281,7 @@ https://github.com/DualSubs/Netflix/releases/latest/download/DualSubs.Netflix.pl
 https://github.com/DualSubs/Spotify/releases/latest/download/DualSubs.Spotify.plugin, enabled=true
 https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/weibo.plugin, enabled=true
 https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/Auto_Join_TF.plugin, enabled=true
+https://kelee.one/Tool/Loon/Plugin/Weixin_external_links_unlock.plugin, enabled=true
 
 [Mitm]
 hostname=testflight.apple.com
