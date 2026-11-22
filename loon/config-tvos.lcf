@@ -5,7 +5,7 @@
 # 本文件：wenrouXN/proxy-config · loon/config-tvos.lcf
 # 【tvOS 旁路由版】用于家里 Apple TV：电视常驻局域网，Loon 在本机主动分流
 #  （不像手机在家时让位给 MSM），故场景不塌缩、DNS 不走家里 Fake-IP 链，
-#  差异见第 1、6、8 条与文末本机化参数，其余与 Beta 版逐字一致。
+#  差异见第 1、6、8、19 条与文末本机化参数，其余与 Beta 版逐字一致。
 #
 # 与上游的差异（顾问式改动，其余与上游逐字一致，便于日后合并上游更新）：
 #  维护原则：规则一律以「规则集」为单位托管在本仓库 loon/rules/，每集绑定一个策略组；
@@ -71,6 +71,9 @@
 # 18. 苹果手动策略再修正（Smith 定）：直连优先——DIRECT → 美国家宽 → 美国
 #     自动策略 → 台湾家宽 → 全部家宽 → 港/台/日/新自动 → 家宽节点 → 兜底
 #     （国内苹果服务与 CDN 直连本就最顺，海外苹果服务再走美国家宽）
+#  19. （Beta 版）「落地」层——本 tvOS 版无代理链：电视直连 URnetwork 端点
+#     即可，落地手动策略 = 落地出口策略（默认）+ 兜底后备策略（手动后备）；
+#     落地前置策略组不存在；落地节点过滤器与全球节点排除规则与 Beta 版一致
 #
 # 本机化参数（tvOS 版）：
 #  - 无 SSID 参数：全部场景组已去掉「HOMEair=DIRECT」，全网一致不塌缩
@@ -118,7 +121,7 @@ SubStore = http://192.168.1.3:3005/cD7wiTGitLyoBdEguAnFWmqCpHKwhLQh4opXfFhFCEpmY
 新国节点=NameRegex, FilterKey="^(?=.*((?i)🇸🇬|新加坡|狮|(\b(SG|SGP|Singapore)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$"
 美国节点=NameRegex, FilterKey="^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA|United States)(\d+)?\b)))(?!.*((?i)回国|校园|游戏|🎮|(\b(GAME)\b))).*$"
 游戏节点=NameRegex, FilterKey="^(?=.*((?i)游戏|🎮|(\b(GAME)(\d+)?\b)))(?!.*((?i)回国|校园)).*$"
-全球节点=NameRegex, FilterKey="^(?=.*(.))(?!.*((?i)群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$"
+全球节点=NameRegex, FilterKey="^(?=.*(.))(?!.*((?i)落地节点|群|邀请|返利|循环|官网|客服|网站|网址|获取|订阅|流量|到期|机场|下次|版本|官址|备用|过期|已用|联系|邮箱|工单|贩卖|通知|倒卖|防止|国内|地址|频道|无法|说明|使用|提示|特别|访问|支持|教程|关注|更新|作者|加入|超时|收藏|福利|邀请|好友|失联|(\b(USE|USED|TOTAL|EXPIRE|EMAIL|Panel|Channel|Author|Traffic)(\d+)?\b|(\d{4}-\d{2}-\d{2}|\dG)))).*$"
 家宽节点=NameRegex, FilterKey="^(?=.*((?i)🏠|家宽|住宅)).*$"
 日本家宽节点=NameRegex, FilterKey="^(?=.*((?i)🇯🇵|日本|东京|大阪|(\b(JP|Japan)(\d+)?\b)))(?=.*(🏠|家宽|住宅)).*$"
 台湾家宽节点=NameRegex, FilterKey="^(?=.*((?i)🇹🇼|台湾|台北|新北|彰化|Hinet|SeedNet|(\b(TW|Taiwan)(\d+)?\b)))(?=.*(🏠|家宽|住宅)).*$"
@@ -126,6 +129,7 @@ SubStore = http://192.168.1.3:3005/cD7wiTGitLyoBdEguAnFWmqCpHKwhLQh4opXfFhFCEpmY
 WARP节点=NameRegex, FilterKey="^(?=.*((?i)WARP)).*$"
 省流节点=NameRegex, FilterKey="^(?=.*((?i)0\.[1-5]|低倍率|省流|大流量))(?!.*🏠).*$"
 美国省流节点=NameRegex, FilterKey="^(?=.*((?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|USA|United States)(\d+)?\b)))(?=.*((?i)0\.[1-5]|低倍率|省流|大流量))(?!.*🏠).*$"
+落地节点=NameRegex, FilterKey="^(?=.*落地节点).*$"
 
 [Proxy Group]
 # --------------------------------
@@ -173,6 +177,8 @@ AI手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 日本自
 苹果手动策略=select, DIRECT, 美国家宽, 美国自动策略, 台湾家宽, 全部家宽, 香港自动策略, 台湾自动策略, 日本自动策略, 新国自动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 回家手动策略=select, DIRECT, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 WARP手动策略=select, WARP节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+落地出口策略=select, 落地节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+落地手动策略=select, 落地出口策略, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 香港自动策略=url-test, 香港节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/HK.png
 台湾自动策略=url-test, 台湾节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/TW.png
 日本自动策略=url-test, 日本节点, interval=60, tolerance=50, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/JP.png
