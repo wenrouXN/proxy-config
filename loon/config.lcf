@@ -80,6 +80,10 @@
 #     链（前置 → 落地出口，出口 IP 即住宅 IP）+ 落地手动策略（默认选链）；
 #     不绑任何规则集、仅手动选用；全球节点过滤器加排除「落地节点」，保证它
 #     们不混入任何通用策略组，只能经链式落地使用
+# 20. 落地手动策略加入对出口节点有要求的手选组（Smith 定，2026-11-22）：
+#     家宽、AI、谷歌、MUSE 四个手动策略各把落地手动策略列为可选项，排在
+#     各自的家宽 fallback 之后、地区自动策略之前；只加选项、不改各组现有
+#     默认选择，选它即整组流量经落地链从美国住宅 IP 出
 #
 # 本机化参数（2026-11-21 已按 Smith 家里环境落地）：
 #  - 场景 SSID：HOMEair（共 24 处：23 处场景组 + 1 处 [Host]）
@@ -176,13 +180,13 @@ WARP手动场景=ssid, default=WARP手动策略, cellular=WARP手动策略, "HOM
 美国手动策略=select, 美国家宽, 美国节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
 游戏手动策略=select, 游戏节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/GAME.png
 全球手动策略=select, 全球节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-家宽手动策略=select, 全部家宽, 台湾家宽, 美国家宽, 家宽节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+家宽手动策略=select, 全部家宽, 台湾家宽, 美国家宽, 落地手动策略, 家宽节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 台湾家宽=fallback, 台湾家宽节点, interval=60, max-timeout=2000, img-url=https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/fallback.png
 美国家宽=fallback, 美国家宽节点, interval=60, max-timeout=2000, img-url=https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/fallback.png
 全部家宽=fallback, 家宽节点, interval=60, max-timeout=2000, img-url=https://github.com/shindgewongxj/WHATSINStash/raw/main/icon/fallback.png
-MUSE手动策略=select, 美国家宽, 台湾家宽, 全部家宽, 家宽节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-AI手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 日本自动策略, 新国自动策略, 台湾自动策略, 韩国自动策略, 香港自动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-谷歌手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 日本自动策略, 新国自动策略, 台湾自动策略, 香港自动策略, 韩国自动策略, AI手动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+MUSE手动策略=select, 美国家宽, 台湾家宽, 全部家宽, 落地手动策略, 家宽节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+AI手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 落地手动策略, 日本自动策略, 新国自动策略, 台湾自动策略, 韩国自动策略, 香港自动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+谷歌手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 落地手动策略, 日本自动策略, 新国自动策略, 台湾自动策略, 香港自动策略, 韩国自动策略, AI手动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 苹果手动策略=select, DIRECT, 美国家宽, 美国自动策略, 台湾家宽, 全部家宽, 香港自动策略, 台湾自动策略, 日本自动策略, 新国自动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 回家手动策略=select, Tailscale, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 WARP落地策略=select, WARP节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
