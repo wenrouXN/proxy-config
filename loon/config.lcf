@@ -120,6 +120,9 @@
 #     插件——iRingo TestFlight 与奶思 Auto_Join_TF；同时撤下第 25
 #     项为 Auto_Join_TF 加的 [Mitm] hostname=testflight.apple.com
 #     （已无插件使用）；[Plugin] 余 23 个
+# 29. MUSE手动策略扩充（Smith 定，2026-11-23）：成员中在全部家宽
+#     之后加入新国自动策略（url-test 新国节点）；MUSE 自此不再纯
+#     住宅，多一个新加坡自动优选的落位
 #
 # Loon 进阶配置 - 此配置文件自动选择网络时延最低的代理节点，无需人工干预，所有过程完全自动化。当连接到配备透明代理的路由器时，Loon 将使用“直连”策略，此时所有流量直接通过你的路由器；在其他网络环境中，Loon 将使用自身的“自动分流”模式访问这些网站，从而避免在已使用透明代理路由器时出现双重代理。
 # Date: 2025-11-08 00:21:37
@@ -180,7 +183,7 @@ WARP节点=NameRegex, FilterKey="^(?=.*((?i)WARP)).*$"
 家宽手动策略=select, 全部家宽, 台湾家宽, 美国家宽, 落地手动策略, 家宽节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 AI手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 落地手动策略, 日本自动策略, 新国自动策略, 台湾自动策略, 韩国自动策略, 香港自动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 谷歌手动策略=select, 美国家宽, 美国自动策略, 台湾家宽, 落地手动策略, 日本自动策略, 新国自动策略, 台湾自动策略, 香港自动策略, 韩国自动策略, AI手动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
-MUSE手动策略=select, 美国家宽, 台湾家宽, 全部家宽, 落地手动策略, 家宽节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
+MUSE手动策略=select, 美国家宽, 台湾家宽, 全部家宽, 新国自动策略, 落地手动策略, 家宽节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 苹果手动策略=select, DIRECT, 美国家宽, 美国自动策略, 台湾家宽, 全部家宽, 落地手动策略, 香港自动策略, 台湾自动策略, 日本自动策略, 新国自动策略, 家宽节点, 兜底后备策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
 美国手动策略=select, 美国家宽, 落地手动策略, 美国节点, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/US.png
 落地手动策略=select, 落地代理链, 落地出口策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/Global.png
