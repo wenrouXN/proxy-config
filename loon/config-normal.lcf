@@ -111,6 +111,10 @@
 #     Tartarus2014 的 hgdj.lpx（纯规则 REJECT 红果/穿山甲广告域，
 #     无 MitM）；注意其 zijieapi.com 整后缀 REJECT 较宽，字节系
 #     其他 App 异常时先停用它排查
+# 28. [Plugin] 精简（Smith 定，2026-11-23）：移除两个 TestFlight
+#     插件——iRingo TestFlight 与奶思 Auto_Join_TF；同时撤下第 25
+#     项为 Auto_Join_TF 加的 [Mitm] hostname=testflight.apple.com
+#     （已无插件使用）；[Plugin] 余 23 个
 #
 # Loon 进阶配置 - 此配置文件自动选择网络时延最低的代理节点，无需人工干预，所有过程完全自动化。当连接到配备透明代理的路由器时，Loon 将使用“直连”策略，此时所有流量直接通过你的路由器；在其他网络环境中，Loon 将使用自身的“自动分流”模式访问这些网站，从而避免在已使用透明代理路由器时出现双重代理。
 # Date: 2025-11-08 00:21:37
@@ -282,18 +286,15 @@ https://github.com/NSRingo/WeatherKit/releases/latest/download/iRingo.WeatherKit
 https://github.com/NSRingo/Siri/releases/latest/download/iRingo.Siri.plugin, enabled=true
 https://github.com/NSRingo/TV/releases/latest/download/iRingo.TV.plugin, enabled=true
 https://github.com/NSRingo/News/releases/latest/download/iRingo.News.plugin, enabled=true
-https://github.com/NSRingo/TestFlight/releases/latest/download/iRingo.TestFlight.plugin, enabled=true
 https://github.com/DualSubs/Universal/releases/latest/download/DualSubs.Universal.plugin, enabled=true
 https://github.com/DualSubs/YouTube/releases/latest/download/DualSubs.YouTube.plugin, enabled=true
 https://github.com/DualSubs/Netflix/releases/latest/download/DualSubs.Netflix.plugin, enabled=true
 https://github.com/DualSubs/Spotify/releases/latest/download/DualSubs.Spotify.plugin, enabled=true
 https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/weibo.plugin, enabled=true
-https://raw.githubusercontent.com/fmz200/wool_scripts/main/Loon/plugin/Auto_Join_TF.plugin, enabled=true
 https://kelee.one/Tool/Loon/Plugin/Weixin_external_links_unlock.plugin, enabled=true
 https://raw.githubusercontent.com/Tartarus2014/Loon-Script/refs/heads/master/Plugin/Block/hgdj.lpx, enabled=true
 
 [Mitm]
-hostname=testflight.apple.com
 ca-p12=
 ca-passphrase=
 skip-server-cert-verify=false
