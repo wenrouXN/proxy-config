@@ -131,6 +131,10 @@
 #     成员为订阅 oracle-arm 的三个节点（Oracle-Hy2 走 hysteria2、Oracle-直连、
 #     Oracle-优选），放在常用手动策略末尾；只作手动可选项，不绑任何规则集、
 #     不改其他策略组与规则
+# 34. 自建与 WARP 同级化（Smith 定，2026-11-28）：自建手动策略补 ssid 场景
+#     「自建手动场景」，与 WARP手动场景同构（default/cellular 均指自建手动
+#     策略、连 HOMEair 塌缩 DIRECT）；MSM 侧自建节点已并入各含 WARP节点 的
+#     策略组、紧随其后，两边地位对齐
 #
 # Loon 进阶配置 - 此配置文件自动选择网络时延最低的代理节点，无需人工干预，所有过程完全自动化。当连接到配备透明代理的路由器时，Loon 将使用“直连”策略，此时所有流量直接通过你的路由器；在其他网络环境中，Loon 将使用自身的“自动分流”模式访问这些网站，从而避免在已使用透明代理路由器时出现双重代理。
 # Date: 2025-11-08 00:21:37
@@ -238,6 +242,7 @@ AI手动场景=ssid, default=AI手动策略, cellular=AI手动策略, img-url=ht
 苹果手动场景=ssid, default=苹果手动策略, cellular=苹果手动策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/SSID.png
 回家手动场景=ssid, default=回家手动策略, cellular=回家手动策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/SSID.png
 WARP手动场景=ssid, default=WARP手动策略, cellular=WARP手动策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/SSID.png
+自建手动场景=ssid, default=自建手动策略, cellular=自建手动策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/SSID.png
 香港自动场景=ssid, default=香港自动策略, cellular=香港自动策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/SSID.png
 台湾自动场景=ssid, default=台湾自动策略, cellular=台湾自动策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/SSID.png
 日本自动场景=ssid, default=日本自动策略, cellular=日本自动策略, img-url=https://raw.githubusercontent.com/Orz-3/mini/master/Color/SSID.png
