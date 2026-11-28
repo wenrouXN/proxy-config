@@ -117,7 +117,7 @@ P2 + "- [Host] 为空（原 SSID DNS 行已移除）",
 ]), 1, "tvos 本机化参数")
 tvos = rep(tvos, "dns-server=system", "dns-server=223.5.5.5, 8.8.8.8", 1, "tvos dns-server")
 tvos = rep(tvos, "include-tun=192.168.1.0/24, 100.64.0.0/10\n", "", 1, "tvos 删除 include-tun")
-tvos = rep(tvos, ', "HOMEair"=DIRECT', "", 23, "tvos 场景去塌缩")
+tvos = rep(tvos, ', "HOMEair"=DIRECT', "", 24, "tvos 场景去塌缩")
 tvos = rep(tvos, TS_NODE, "", 1, "tvos 删除 Tailscale 节点")
 tvos = rep(tvos, HOME_POLICY, "回家手动策略=select, DIRECT, img-url=", 1, "tvos 回家策略")
 tvos = rep(tvos, LANDING_POLICY, "", 1, "tvos 删除 WARP落地策略")
